@@ -1,8 +1,10 @@
 //Declaring the variables
 PImage obj1, obj2, obj3, obj4, obj5, obj6, plr, Sky;
-
+//Declaring the player positions
 float playerX = 100, playerY = 330;
+//Using an array to store the starting X positions for the wall objects
 float objX[] = {100, 800, 800, 800, 800, 800};
+//Using a boolean to control when the player moves up and down
 boolean JumpUp = false, JumpDown = false, Jump = false;
 boolean fall = false;
 int attempt = 0;
@@ -15,7 +17,7 @@ public class Collision {
   this.plrX = plrX;
   this.objY = objY;
 }
-
+//Using a method that gets the objects X positon, the players Y position and the height and width of the hit box
 public void hit(float x,float plrY,float boxWidth, float boxHeight) {
 float posX1 = x;
 float posX2 = x + boxWidth;
@@ -23,8 +25,9 @@ float posY1 = this.objY;
 float posY2 = this.objY + boxHeight;
 
 if (!Jump) {
+//Using an if and else statement to check if the plrX is greater then or equal to posX1 and less then or equal to posX2 and if plrY is greater then or equal to posY1 and less then or equal to posY2
     if (plrX >= posX1 && plrX <= posX2 && plrY >= posY1 && plrY <= posY2) {
-      
+      //Setting the players Y position to 330 when the player touches the grass
       playerY = 330;
       fall = false;
     } else {
@@ -38,7 +41,9 @@ if (!Jump) {
 }
 
 void setup() {
+//Setting the window width to 800 and the height to 600
   size(800, 600);
+  //Setting up the images for the objects
   Sky = loadImage("Sky.jpg");
   plr = loadImage("kid1.png");
   obj1 = loadImage("object.jpg");
@@ -60,9 +65,13 @@ void keyPressed() {
 }
 
 void draw() {
+//Setting the background image
   background(Sky);
+  //Setting the text color to red
   fill(255,0,0);
+  //Setting the text size to 25
   textSize(25);
+  //Setting the text and position
   text("Attempt: " + attempt,20,50);
   text("Score: " + score,20,80);
   //Moving the objects from right to left
