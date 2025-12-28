@@ -1,8 +1,8 @@
 //Declaring the variables
 PImage obj1, obj2, obj3, obj4, obj5, obj6, plr, Sky;
-//Declaring the player positions
+//Declaring the players positions
 float playerX = 100, playerY = 330;
-//Using an array to store the starting X positions for the wall objects
+//Using an array to store the starting X positions for the cliff objects
 float objX[] = {100, 800, 800, 800, 800, 800};
 //Using a boolean to control when the player moves up and down
 boolean JumpUp = false, JumpDown = false, Jump = false;
@@ -27,7 +27,7 @@ float posY2 = this.objY + boxHeight;
 if (!Jump) {
 //Using an if and else statement to check if the plrX is greater then or equal to posX1 and less then or equal to posX2 and if plrY is greater then or equal to posY1 and less then or equal to posY2
     if (plrX >= posX1 && plrX <= posX2 && plrY >= posY1 && plrY <= posY2) {
-      //Setting the players Y position to 330 when the player touches the grass
+      //Setting the players Y position to 330 when the player touches the cliff
       playerY = 330;
       fall = false;
     } else {
@@ -107,7 +107,7 @@ Collision collid6 = new Collision(playerX,200);
       playerY = 330;
       attempt++;
       score = 0;
-      
+      //Setting the cliff objects back to the original X positions
       objX[0] = 100;
       objX[1] = 800;
       objX[2] = 800;
@@ -120,6 +120,7 @@ Collision collid6 = new Collision(playerX,200);
 
   //controlling the players jump
   if (JumpUp) {
+  //Moving the player up by subtracting 5 from the players Y position until it reaches 200 and then setting the JumpUp to false and setting JumpDown to true
     playerY -= 5;
     if (playerY <= 200) {
       JumpUp = false;
@@ -128,6 +129,7 @@ Collision collid6 = new Collision(playerX,200);
   }
 
   if (JumpDown) {
+  //Moving the player down by adding 5 to the players Y position until it reaches 330 and then setting JumpDown to false and setting Jump to false
     playerY += 5;
     if (playerY >= 330) {
       JumpDown = false;
@@ -135,7 +137,7 @@ Collision collid6 = new Collision(playerX,200);
     }
   }
 
-  //Using an if statement to move the object back when it is off of the screen and add spacing
+  //Using an if statement to move the object back when it is off of the screen and adding space
   if (objX[0] <= -500) objX[0] = objX[5] + 700;
   if (objX[1] <= -400) objX[1] = objX[0] + 700;
   if (objX[2] <= -480) objX[2] = objX[1] + 700;
